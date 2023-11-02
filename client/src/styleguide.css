@@ -1,0 +1,13 @@
+:root {
+  --black: rgba(25, 25, 25, 1);
+  --drop-shadow: 0px 5px 10px 0px rgba(89, 27, 27, 0.05);
+  --gray-555: rgba(85, 85, 85, 1);
+  --gray-777: rgba(119, 119, 119, 1);
+  --gray-999: rgba(153, 153, 153, 1);
+  --grayd-9d-9d-9: rgba(217, 217, 217, 1);
+  --graye-3e-4e-5: rgba(227, 228, 229, 1);
+  --grayf-6f-6f-6: rgba(246, 246, 246, 1);
+  --primarybackround: rgba(255, 247, 245, 1);
+  --primaryprimary: rgba(246, 246, 246, 1);
+  --secondary: rgba(30, 187, 236, 1);
+}

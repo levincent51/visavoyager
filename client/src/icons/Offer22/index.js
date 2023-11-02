@@ -1,0 +1,1 @@
+export { Offer22 } from "./Offer22";
