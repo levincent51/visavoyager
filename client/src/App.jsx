@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./Layout"; // Import your layout component
-import Home from "./Home";
+import Home from "./screens/Home";
 
 
 function App() {
