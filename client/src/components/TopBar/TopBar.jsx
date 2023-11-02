@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
-import { LeftArrow } from "../../icons/LeftArrow/LeftArrow";
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from "@mui/icons-material/Menu";
 import { AndroidStatusBarsWrapper } from "../AndroidStatusBarsWrapper/AndroidStatusBarsWrapper";
@@ -36,15 +35,6 @@ const StyledTopBar = styled.div`
     position: relative;
   }
 
-  & .left-arrow {
-    align-items: center;
-    display: inline-flex;
-    flex: 0 0 auto;
-    gap: 8px;
-    padding: 4px;
-    position: relative;
-  }
-
   & .icon-instance-node {
     height: 24px !important;
     position: relative !important;
@@ -74,15 +64,6 @@ const StyledTopBar = styled.div`
     width: 192px;
   }
 
-  & .hamburger-menu {
-    align-items: center;
-    display: inline-flex;
-    flex: 0 0 auto;
-    gap: 8px;
-    justify-content: flex-end;
-    padding: 4px;
-    position: relative;
-  }
 `;
 
 export const TopBar = ({ className, visible = true, headerClassName, text = "Book Flight" }) => {
@@ -92,7 +73,6 @@ export const TopBar = ({ className, visible = true, headerClassName, text = "Boo
         <AndroidStatusBarsWrapper androidStatusBarsColor="#191919" className="android-status-bars-instance" />
       </div>
       <div className="content">
-        <div className="left-arrow">{visible && <LeftArrow className="icon-instance-node" />}</div>
         <div className={`header ${headerClassName}`}>
           <div className="book-flight">{text}</div>
         </div>
