@@ -1,9 +1,18 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from "@mui/icons-material/Menu";
+import PermIdentityIcon from '@mui/icons-material/PermIdentity';
+import BackpackOutlinedIcon from '@mui/icons-material/BackpackOutlined';
+import StarBorderPurple500OutlinedIcon from '@mui/icons-material/StarBorderPurple500Outlined';
+import Drawer from "@mui/material/Drawer";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import CloseIcon from "@mui/icons-material/Close";
 import { AndroidStatusBarsWrapper } from "../AndroidStatusBarsWrapper/AndroidStatusBarsWrapper";
+import { Link } from "react-router-dom";
 
 const StyledTopBar = styled.div`
   align-items: center;
@@ -64,9 +73,33 @@ const StyledTopBar = styled.div`
     width: 192px;
   }
 
+  & .menu-content {
+    width: 100%;
+  }
+
+  & .close-button {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    cursor: pointer;
+  }
+
 `;
 
 export const TopBar = ({ className, visible = true, headerClassName, text = "Book Flight" }) => {
+
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleMenuOpen = () => {
+    setMenuOpen(true);
+  };
+
+  const handleMenuClose = () => {
+    setMenuOpen(false);
+  };
+
+
+
   return (
     <StyledTopBar className={`top-bar ${className}`}>
       <div className="android-status-bars-instance-wrapper">
@@ -76,12 +109,45 @@ export const TopBar = ({ className, visible = true, headerClassName, text = "Boo
         <div className={`header ${headerClassName}`}>
           <div className="book-flight">{text}</div>
         </div>
-        <div className="hamburger-menu">
+        <div className="hamburger-menu" onClick={handleMenuOpen}>
           <IconButton>
             <MenuIcon color="primary" />
           </IconButton>
         </div>
       </div>
+      <Drawer anchor="right" open={menuOpen} onClose={handleMenuClose} PaperProps={{ style: { width: '60%' } }}>
+        <div className="menu-content">
+          <IconButton className="close-button" onClick={handleMenuClose}>
+            <CloseIcon />
+          </IconButton>
+          <List>
+            <Link to="/profile" onClick={handleMenuClose}>
+              <ListItem button>
+                <IconButton>
+                  <PermIdentityIcon />
+                </IconButton>
+                <ListItemText primary="Profile" />
+              </ListItem>
+            </Link>
+            <Link to="/mytrips" onClick={handleMenuClose}>
+              <ListItem button>
+                <IconButton>
+                  <BackpackOutlinedIcon />
+                </IconButton>
+                <ListItemText primary="My Trips" />
+              </ListItem>
+            </Link>
+            <Link to="/rateus" onClick={handleMenuClose}>
+              <ListItem button>
+                <IconButton>
+                  <StarBorderPurple500OutlinedIcon />
+                </IconButton>
+                <ListItemText primary="Rate Us" />
+              </ListItem>
+            </Link>
+          </List>
+        </div>
+      </Drawer>
     </StyledTopBar>
   );
 };

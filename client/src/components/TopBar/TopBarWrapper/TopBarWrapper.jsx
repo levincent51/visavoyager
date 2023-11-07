@@ -7,7 +7,7 @@ export const TopBarWrapper = ({ text }) => {
     <TopBar
       className="top-bar-instance"
       headerClassName="design-component-instance-node"
-      text={text} // Use the passed text prop
+      text={text}
       visible={false}
     />
   );

@@ -4,11 +4,11 @@ import Button from "@mui/material/Button";
 import ListAltOutlinedIcon from "@mui/icons-material/ListAltOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { primaryColor, secondaryColor } from "../../util/colors";
 
 const StyledGroup = styled.div`
-  position: fixed;
-  top: 700px;
+  background-color: #f9fbfa;
   display: flex;
   justify-content: space-between;
   gap: 25px;
@@ -20,25 +20,35 @@ const IconButton = styled(Button)`
   align-items: center;
 `;
 
+const BoldText = styled.span`
+  font-weight: bold;
+`;
+
 export const Taskbar = () => {
+  const location = useLocation();
+
+  const isOnHome = location.pathname === "/";
+  const isOnChecklist = location.pathname === "/checklist";
+  const isOnProfile = location.pathname === "/profile";
+
   return (
     <StyledGroup>
       <Link to="/">
-        <IconButton style={{ color: "#1EBBEC" }}>
-          <HomeOutlinedIcon style={{ fontSize: 40, color: "#1EBBEC" }} />
-          Home
+        <IconButton style={{ color: isOnHome ? primaryColor : secondaryColor }}>
+          <HomeOutlinedIcon style={{ fontSize: 40, color: isOnHome ? primaryColor : secondaryColor }} />
+          {isOnHome ? <BoldText>Home</BoldText> : "Home"}
         </IconButton>
       </Link>
       <Link to="/checklist">
-        <IconButton style={{ color: "#1EBBEC" }}>
-          <ListAltOutlinedIcon style={{ fontSize: 40, color: "#1EBBEC" }} />
-          Checklist
+        <IconButton style={{ color: isOnChecklist ? primaryColor : secondaryColor }}>
+          <ListAltOutlinedIcon style={{ fontSize: 40, color: isOnChecklist ? primaryColor : secondaryColor }} />
+          {isOnChecklist ? <BoldText>Checklist</BoldText> : "Checklist"}
         </IconButton>
       </Link>
       <Link to="/profile">
-        <IconButton style={{ color: "#1EBBEC" }}>
-          <PersonOutlineOutlinedIcon style={{ fontSize: 40, color: "#1EBBEC" }} />
-          Profile
+        <IconButton style={{ color: isOnProfile ? primaryColor : secondaryColor }}>
+          <PersonOutlineOutlinedIcon style={{ fontSize: 40, color: isOnProfile ? primaryColor : secondaryColor }} />
+          {isOnProfile ? <BoldText>Profile</BoldText> : "Profile"}
         </IconButton>
       </Link>
     </StyledGroup>
