@@ -34,7 +34,7 @@ export const Taskbar = (props) => {
 
   return (
     <StyledGroup>
-      <Link to="/">
+      <Link to="/home">
         <IconButton style={{ color: isOnHome ? primaryColor : secondaryColor }}>
           <HomeOutlinedIcon style={{ fontSize: 40, color: isOnHome ? primaryColor : secondaryColor }} />
           {isOnHome ? <BoldText>Home</BoldText> : "Home"}

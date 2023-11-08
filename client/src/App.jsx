@@ -7,6 +7,7 @@ import theme from "./util/theme";
 import Profile from "./screens/Profile";
 import Checklist from "./screens/Checklist";
 import MyTrips from "./screens/MyTrips";
+import LandingPage from "./screens/Landing"; // Import the LandingPage component
 
 function App() {
   const [from, setFrom] = useState(null);
@@ -17,11 +18,18 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Router>
-        <Layout searched={searched}>
-          <Routes>
-            <Route
-              path="/"
-              element={
+        <Routes>
+          {/* Set the LandingPage as the initial route */}
+          <Route
+            path="/"
+            element={
+              <LandingPage />
+            }
+          />
+          <Route
+            path="/home"
+            element={
+              <Layout searched={searched}>
                 <Home
                   from={from}
                   to={to}
@@ -31,35 +39,39 @@ function App() {
                   setDate={setDate}
                   setSearched={setSearched}
                 />
-              }
-            />
-            <Route
-              path="/checklist"
-              element={
-                <Checklist
-                  from={from}
-                  to={to}
-                  date={date} 
-                />
-              }
-            />
-            <Route path="/profile" element={<Profile />} />
-            <Route 
-              path="/mytrips" 
-              element={
-                <MyTrips 
-                  from={from}
-                  to={to}
-                  date={date}
-                  searched={searched}
-                />} 
-            />
-            <Route
-              path="/rateus"
-              element={<div>This has not been implemented!</div>}
-            />
-          </Routes>
-        </Layout>
+              </Layout>
+            }
+          />
+          <Route
+            path="/checklist"
+            element={
+              <Layout searched={searched}>
+                <Checklist from={from} to={to} date={date} />
+              </Layout>
+            }
+          />
+          <Route path="/profile" element={
+            <Layout searched={searched}>
+              <Profile />
+            </Layout>
+          } />
+          <Route
+            path="/mytrips"
+            element={
+              <Layout searched={searched}>
+                <MyTrips from={from} to={to} date={date} searched={searched} />
+              </Layout>
+            }
+          />
+          <Route
+            path="/rateus"
+            element={
+              <Layout searched={searched}>
+                <div>This has not been implemented!</div>
+              </Layout>
+            }
+          />
+        </Routes>
       </Router>
     </ThemeProvider>
   );
