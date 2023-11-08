@@ -1,8 +1,11 @@
 **Front end with react and backend Node.js Express server (currently mocked)**
 
+Pre-req:
+- need to have node.js installed (see: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+  
 how to set up the app:
 1. navigate into the client folder
-2. in cli enter 'npm install', this will install all the packages needed for the front-end, will need to have node.js installed (see: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+2. in cli enter 'npm install', this will install all the packages needed for the front-end
 3. in cli now type and enter 'npm start'
 
 
