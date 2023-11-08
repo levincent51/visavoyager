@@ -28,7 +28,7 @@ export const Taskbar = (props) => {
   const {searched} = props
   const location = useLocation();
 
-  const isOnHome = location.pathname === "/";
+  const isOnHome = location.pathname === "/home";
   const isOnChecklist = location.pathname === "/checklist";
   const isOnProfile = location.pathname === "/profile";
 
