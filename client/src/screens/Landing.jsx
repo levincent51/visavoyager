@@ -12,7 +12,6 @@ const LandingPage = () => {
         height: "100vh",
       }}
     >
-      {/* Add your image here */}
       <img
         src="/Screenshot 2023-11-08 at 5.48.59 pm.png"
         alt="Your Image"
@@ -24,7 +23,6 @@ const LandingPage = () => {
         size="large"
         style={{ margin: "16px" }}
         onClick={() => {
-          // Redirect to your main app screen, e.g., "/home"
           window.location.href = "/home";
         }}
       >

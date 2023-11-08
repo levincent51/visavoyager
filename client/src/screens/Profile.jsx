@@ -24,8 +24,7 @@ const Profile = () => {
   const [values, setValues] = useState(savedInfo);
   const [isChanged, setIsChanged] = useState(false);
   const fileInputRef = useRef(null);
-  const [selectedImage, setSelectedImage] = useState(null); // State for the selected image
-
+  const [selectedImage, setSelectedImage] = useState(null);
   const handleCancelClick = () => {
     setValues(savedInfo);
     setIsChanged(false);
@@ -56,7 +55,7 @@ const Profile = () => {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      setSelectedImage(URL.createObjectURL(file)); // Store the selected image
+      setSelectedImage(URL.createObjectURL(file));
     }
   };
 
@@ -66,7 +65,7 @@ const Profile = () => {
         <Grid container justifyContent="center" alignItems="center">
           <Grid item sx={{ margin: 2, position: "relative" }}>
             <Avatar
-              src={selectedImage || "url_to_profile_image"} // Use the selected image if available
+              src={selectedImage || "url_to_profile_image"}
               alt="Profile Image"
               sx={{ width: 75, height: 75 }}
             />

@@ -8,7 +8,7 @@ import {
   AccordionSummary,
   AccordionDetails,
   Container,
-  Box, // Import Box component
+  Box,
 } from "@mui/material";
 import { primaryColor } from "../util/colors";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -92,7 +92,7 @@ const Checklist = (props) => {
           flexDirection: "column",
           alignItems: "center",
           textAlign: "center",
-          gap: "16px", // Adjust the gap as needed
+          gap: "16px",
         }}
       >
         <CitiesAndDates from={from} to={to} date={date} />

@@ -74,7 +74,7 @@ const Home = (props) => {
   };
 
   useEffect(() => {
-    const fieldsFilled = from && to && date; // Check if all fields are filled
+    const fieldsFilled = from && to && date;
     setAreFieldsFilled(fieldsFilled);
   }, [from, to, date]);
   
@@ -178,7 +178,7 @@ const Home = (props) => {
               shrink: true,
             }}
             value={date}
-            onChange={handleDateChange} // Update the "Departure" state
+            onChange={handleDateChange}
           />
         </Grid>
 

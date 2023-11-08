@@ -7,7 +7,7 @@ import theme from "./util/theme";
 import Profile from "./screens/Profile";
 import Checklist from "./screens/Checklist";
 import MyTrips from "./screens/MyTrips";
-import LandingPage from "./screens/Landing"; // Import the LandingPage component
+import LandingPage from "./screens/Landing";
 
 function App() {
   const [from, setFrom] = useState(null);
@@ -19,7 +19,6 @@ function App() {
     <ThemeProvider theme={theme}>
       <Router>
         <Routes>
-          {/* Set the LandingPage as the initial route */}
           <Route
             path="/"
             element={
