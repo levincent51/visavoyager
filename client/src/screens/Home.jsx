@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Button,
   Container,
@@ -6,26 +7,32 @@ import {
   IconButton,
   Grid,
   Autocomplete,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  CircularProgress,
 } from "@mui/material";
-import SwapVertIcon from '@mui/icons-material/SwapVert';
-import FlightTakeoffOutlinedIcon from '@mui/icons-material/FlightTakeoffOutlined';
-import FlightLandOutlinedIcon from '@mui/icons-material/FlightLandOutlined';
+import SwapVertIcon from "@mui/icons-material/SwapVert";
+import FlightTakeoffOutlinedIcon from "@mui/icons-material/FlightTakeoffOutlined";
+import FlightLandOutlinedIcon from "@mui/icons-material/FlightLandOutlined";
 
 const locations = [
-  { country: 'China', city: 'Beijing', airport: 'Beijing Capital International Airport' },
-  { country: 'USA', city: 'New York', airport: 'JFK Airport' },
-  // Add more locations as needed
+  { country: 'China', city: 'Beijing', airport: 'PEK' },
+  { country: 'USA', city: 'New York', airport: 'JFK' },
 ];
 
-const Home = () => {
-  const [from, setFrom] = useState(null);
-  const [to, setTo] = useState(null);
-  const [date, setDate] = useState("");
+const Home = (props) => {
+  const {from, to, setFrom, setTo, date, setDate, setSearched} = props;
+  const [openDialog, setOpenDialog] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [areFieldsFilled, setAreFieldsFilled] = useState(false);
 
-  // Define dynamic options for the "From" dropdown
+  const navigate = useNavigate();
+
   const fromOptions = locations.filter((location) => location.city !== to?.city);
 
-  // Define dynamic options for the "To" dropdown
   const toOptions = locations.filter((location) => location.city !== from?.city);
 
   const handleFromChange = (event, value) => {
@@ -41,6 +48,36 @@ const Home = () => {
     setDate(event.target.value);
   };
 
+  const handleAddTrip = () => {
+    if (areFieldsFilled) {
+      setIsLoading(true);
+      setOpenDialog(true);
+  
+      setTimeout(() => {
+        setIsLoading(false);
+        setOpenDialog(true);
+      }, 2000);
+    }
+  };
+  
+
+  const handleDialogClose = () => {
+    setOpenDialog(false);
+  };
+
+  const handleConfirm = () => {
+    if (!isLoading) {
+      setOpenDialog(false);
+      setSearched(true)
+      navigate("/checklist");
+    }
+  };
+
+  useEffect(() => {
+    const fieldsFilled = from && to && date; // Check if all fields are filled
+    setAreFieldsFilled(fieldsFilled);
+  }, [from, to, date]);
+  
   return (
     <Container>
       <Grid container direction="column" spacing={2}>
@@ -146,11 +183,35 @@ const Home = () => {
         </Grid>
 
         <Grid item>
-          <Button variant="contained" color="primary" fullWidth>
-            Search
-          </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          fullWidth
+          onClick={handleAddTrip}
+          disabled={!areFieldsFilled || isLoading}
+        >
+          Search
+        </Button>
         </Grid>
       </Grid>
+
+      <Dialog open={openDialog} onClose={handleDialogClose}>
+        <DialogTitle>Confirmation</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            {isLoading ? 'Searching for requirements': 'Do you wish to add this trip?'}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleDialogClose} color="primary">
+            No
+          </Button>
+          <Button onClick={handleConfirm} color="primary" disabled={isLoading}>
+            Yes
+          </Button>
+          {isLoading && <CircularProgress size={24} />}
+        </DialogActions>
+      </Dialog>
     </Container>
   );
 };

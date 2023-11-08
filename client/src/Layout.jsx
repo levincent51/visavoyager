@@ -22,7 +22,7 @@ const Content = styled.div`
   flex-direction: column;
 `;
 
-const Layout = ({ children }) => {
+const Layout = ({ children, searched }) => {
   const location = useLocation();
   let topBarText = "Travel Information";
 
@@ -42,7 +42,7 @@ const Layout = ({ children }) => {
       <Content>
         {children}
       </Content>
-      <Taskbar />
+      <Taskbar searched={searched} />
     </Container>
   );
 };

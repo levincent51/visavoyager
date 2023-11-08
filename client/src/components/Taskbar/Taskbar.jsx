@@ -24,7 +24,8 @@ const BoldText = styled.span`
   font-weight: bold;
 `;
 
-export const Taskbar = () => {
+export const Taskbar = (props) => {
+  const {searched} = props
   const location = useLocation();
 
   const isOnHome = location.pathname === "/";
@@ -39,12 +40,12 @@ export const Taskbar = () => {
           {isOnHome ? <BoldText>Home</BoldText> : "Home"}
         </IconButton>
       </Link>
-      <Link to="/checklist">
+      {searched && <Link to="/checklist">
         <IconButton style={{ color: isOnChecklist ? primaryColor : secondaryColor }}>
           <ListAltOutlinedIcon style={{ fontSize: 40, color: isOnChecklist ? primaryColor : secondaryColor }} />
           {isOnChecklist ? <BoldText>Checklist</BoldText> : "Checklist"}
         </IconButton>
-      </Link>
+      </Link>}
       <Link to="/profile">
         <IconButton style={{ color: isOnProfile ? primaryColor : secondaryColor }}>
           <PersonOutlineOutlinedIcon style={{ fontSize: 40, color: isOnProfile ? primaryColor : secondaryColor }} />

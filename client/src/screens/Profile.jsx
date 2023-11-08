@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   Avatar,
   TextField,
@@ -11,11 +11,11 @@ import {
 import EditIcon from "@mui/icons-material/Edit";
 import AddIcon from "@mui/icons-material/Add";
 
-const savedInfo = {
+let savedInfo = {
   name: "John Smith",
   address: "3817 Spruce Street, Philadelphia, PA",
   email: "johnsmith@example.com",
-  country: "Australia",
+  country: "USA",
   passportNo: "PB123456",
   expiryDate: "2029-03-02",
 };
@@ -23,6 +23,8 @@ const savedInfo = {
 const Profile = () => {
   const [values, setValues] = useState(savedInfo);
   const [isChanged, setIsChanged] = useState(false);
+  const fileInputRef = useRef(null);
+  const [selectedImage, setSelectedImage] = useState(null); // State for the selected image
 
   const handleCancelClick = () => {
     setValues(savedInfo);
@@ -44,13 +46,27 @@ const Profile = () => {
     setIsChanged(true);
   };
 
+  const handleUploadClick = () => {
+    // Trigger the hidden file input element
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setSelectedImage(URL.createObjectURL(file)); // Store the selected image
+    }
+  };
+
   return (
     <Container>
       <Grid container direction="column" spacing={1.8}>
         <Grid container justifyContent="center" alignItems="center">
           <Grid item sx={{ margin: 2, position: "relative" }}>
             <Avatar
-              src="url_to_profile_image"
+              src={selectedImage || "url_to_profile_image"} // Use the selected image if available
               alt="Profile Image"
               sx={{ width: 75, height: 75 }}
             />
@@ -62,10 +78,17 @@ const Profile = () => {
                 backgroundColor: "white",
                 border: "1px solid grey",
               }}
-              onClick={() => alert("Functionality to change profile picture")}
+              onClick={handleUploadClick}
             >
               <EditIcon sx={{ fontSize: 12 }} />
             </IconButton>
+            <input
+              type="file"
+              ref={fileInputRef}
+              style={{ display: "none" }}
+              accept="image/*"
+              onChange={handleFileChange}
+            />
           </Grid>
         </Grid>
         <Grid item>
