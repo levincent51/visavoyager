@@ -90,6 +90,20 @@ const Profile = () => {
             />
           </Grid>
         </Grid>
+        {isChanged && (
+          <Grid container justifyContent="center" alignItems="center">
+            <Button
+              variant="outlined"
+              color="secondary"
+              onClick={handleCancelClick}
+            >
+              Cancel
+            </Button>
+            <Button variant="contained" color="primary" onClick={handleSaveClick}>
+              Save
+            </Button>
+          </Grid>
+        )}
         <Grid item>
           <TextField
             label="Name"
@@ -170,20 +184,6 @@ const Profile = () => {
             onChange={handleInputChange}
           />
         </Grid>
-        {isChanged && (
-          <Grid item>
-            <Button
-              variant="outlined"
-              color="secondary"
-              onClick={handleCancelClick}
-            >
-              Cancel
-            </Button>
-            <Button variant="contained" color="primary" onClick={handleSaveClick}>
-              Save
-            </Button>
-          </Grid>
-        )}
       </Grid>
     </Container>
   );

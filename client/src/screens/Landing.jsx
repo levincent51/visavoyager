@@ -23,7 +23,7 @@ const LandingPage = () => {
         size="large"
         style={{ margin: "16px" }}
         onClick={() => {
-          window.location.href = "/home";
+          window.location.href = "/profile";
         }}
       >
         Go to App
