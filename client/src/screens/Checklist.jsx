@@ -120,7 +120,7 @@ const Checklist = (props) => {
                     }
                   />
                 }
-                label="US Passport"
+                label="Valid Passport"
               />
             </FormGroup>
           </AccordionSummary>
