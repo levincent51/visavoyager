@@ -8,12 +8,21 @@ import Profile from "./screens/Profile";
 import Checklist from "./screens/Checklist";
 import MyTrips from "./screens/MyTrips";
 import LandingPage from "./screens/Landing";
+import GetStarted from "./screens/GetStarted";
 
 function App() {
   const [from, setFrom] = useState(null);
   const [to, setTo] = useState(null);
   const [date, setDate] = useState("");
   const [searched, setSearched] = useState(false);
+  const [formData, setFormData] = useState({
+    fullName: "",
+    address: "",
+    email: "",
+    country: "",
+    passportNumber: "",
+    expiryDate: "",
+  });
 
   return (
     <ThemeProvider theme={theme}>
@@ -51,7 +60,7 @@ function App() {
           />
           <Route path="/profile" element={
             <Layout searched={searched}>
-              <Profile />
+              <Profile formData={formData} setFormData={setFormData} />
             </Layout>
           } />
           <Route
@@ -68,6 +77,12 @@ function App() {
               <Layout searched={searched}>
                 <div>This has not been implemented!</div>
               </Layout>
+            }
+          />
+          <Route
+            path="/getstarted"
+            element={
+              <GetStarted formData={formData} setFormData={setFormData}/>
             }
           />
         </Routes>

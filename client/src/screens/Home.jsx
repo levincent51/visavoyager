@@ -21,6 +21,7 @@ import FlightLandOutlinedIcon from "@mui/icons-material/FlightLandOutlined";
 const locations = [
   { country: 'China', city: 'Beijing', airport: 'PEK' },
   { country: 'USA', city: 'New York', airport: 'JFK' },
+  { country: 'Canada', city: 'Toronto', airport: 'YYZ' },
 ];
 
 const Home = (props) => {
@@ -42,7 +43,10 @@ const Home = (props) => {
   const handleToChange = (event, value) => {
     setTo(value);
   };
-
+  const handleSwapClick = () => {
+    setFrom(to);
+    setTo(from);
+  };
   const handleDateChange = (event) => {
     console.log(event.target.value)
     setDate(event.target.value);
@@ -131,7 +135,7 @@ const Home = (props) => {
                   borderRadius: "50%",
                   border: "1px solid grey",
                 }}
-                onClick={() => alert('Feature unavailable for prototype')}
+                onClick={handleSwapClick}
               >
                 <SwapVertIcon />
               </IconButton>

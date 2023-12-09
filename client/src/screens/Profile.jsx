@@ -7,32 +7,42 @@ import {
   Container,
   Grid,
   Button,
+  Autocomplete,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import AddIcon from "@mui/icons-material/Add";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import format from "date-fns/format";
+import dayjs from 'dayjs';  // Import dayjs library
 
 let savedInfo = {
-  name: "John Smith",
+  fullName: "John Smith",
   address: "3817 Spruce Street, Philadelphia, PA",
   email: "johnsmith@example.com",
   country: "USA",
-  passportNo: "PB123456",
+  passportNumber: "PB123456",
   expiryDate: "2029-03-02",
 };
-
-const Profile = () => {
-  const [values, setValues] = useState(savedInfo);
+const countries = [
+  "USA", "Canada", "China", "Vietnam", "UK" /* Add all countries here */ 
+];
+const Profile = ({ formData, setFormData }) => {
+  console.log(formData);
+  const [values, setValues] = useState(formData.fullName !== '' ? formData : savedInfo);
   const [isChanged, setIsChanged] = useState(false);
   const fileInputRef = useRef(null);
   const [selectedImage, setSelectedImage] = useState(null);
+
   const handleCancelClick = () => {
-    setValues(savedInfo);
+    setValues(formData);
     setIsChanged(false);
   };
 
   const handleSaveClick = () => {
-    //TODO THIS IS A SERVER CALL
-    savedInfo = { ...values };
+    // TODO: Perform the server call or save data
+    setFormData({ ...values });
     setIsChanged(false);
   };
 
@@ -44,6 +54,16 @@ const Profile = () => {
     });
     setIsChanged(true);
   };
+
+  const handleDropdownChange = (c) => {
+    
+    setValues({
+      ...values,
+      country: c
+    });
+    setIsChanged(true);
+  };
+
 
   const handleUploadClick = () => {
     // Trigger the hidden file input element
@@ -90,27 +110,13 @@ const Profile = () => {
             />
           </Grid>
         </Grid>
-        {isChanged && (
-          <Grid container justifyContent="center" alignItems="center">
-            <Button
-              variant="outlined"
-              color="secondary"
-              onClick={handleCancelClick}
-            >
-              Cancel
-            </Button>
-            <Button variant="contained" color="primary" onClick={handleSaveClick}>
-              Save
-            </Button>
-          </Grid>
-        )}
         <Grid item>
           <TextField
             label="Name"
             fullWidth
             size="small"
-            name="name"
-            value={values.name}
+            name="fullName"
+            value={values.fullName}
             onChange={handleInputChange}
           />
         </Grid>
@@ -154,13 +160,21 @@ const Profile = () => {
           </Typography>
         </Grid>
         <Grid item>
-          <TextField
+          <Autocomplete
             label="Country"
+            options={countries}
             fullWidth
             size="small"
-            name="country"
             value={values.country}
-            onChange={handleInputChange}
+            onChange={(event, newValue) => handleDropdownChange(newValue)}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                required
+                label="Country"
+                variant="outlined"
+              />
+            )}
           />
         </Grid>
         <Grid item>
@@ -168,23 +182,45 @@ const Profile = () => {
             label="Passport No."
             fullWidth
             size="small"
-            name="passportNo"
-            value={values.passportNo}
+            name="passportNumber"
+            value={values.passportNumber}
             onChange={handleInputChange}
           />
         </Grid>
         <Grid item>
-          <TextField
-            label="Expiry Date"
-            fullWidth
-            type='date'
-            size="small"
-            name="expiryDate"
-            value={values.expiryDate}
-            onChange={handleInputChange}
-          />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              required
+              fullWidth
+              label="Expiry Date"
+              value={values.expiryDate ? dayjs(values.expiryDate) : null}
+              onChange={(date) =>
+                handleInputChange({
+                  target: {
+                    name: "expiryDate",
+                    value: format(new Date(date), "MM/dd/yyyy"),
+                  },
+                })
+              }
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
         </Grid>
       </Grid>
+      {isChanged && (
+          <Grid container justifyContent="right" alignItems="right">
+            <Button
+              variant="outlined"
+              color="secondary"
+              onClick={handleCancelClick}
+            >
+              Cancel
+            </Button>
+            <Button variant="contained" color="primary" onClick={handleSaveClick}>
+              Save
+            </Button>
+          </Grid>
+        )}
     </Container>
   );
 };

@@ -97,7 +97,7 @@ const Checklist = (props) => {
       >
         <CitiesAndDates from={from} to={to} date={date} />
         <Typography variant="body1" style={{ color: primaryColor }}>
-          {progress > 0 ? `Estimated time: ${progress} days` : "Complete!"}
+          {progress > 0 ? `Estimated time: ${progress} days` : "You're good to go!"}
         </Typography>
         <Accordion
           expanded={expandedAccordion === "panel1"}
