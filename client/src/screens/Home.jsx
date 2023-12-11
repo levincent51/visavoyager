@@ -19,9 +19,40 @@ import FlightTakeoffOutlinedIcon from "@mui/icons-material/FlightTakeoffOutlined
 import FlightLandOutlinedIcon from "@mui/icons-material/FlightLandOutlined";
 
 const locations = [
-  { country: 'China', city: 'Beijing', airport: 'PEK' },
-  { country: 'USA', city: 'New York', airport: 'JFK' },
+  { country: 'Australia', city: 'Adelaide', airport: 'ADL' },
+  { country: 'Australia', city: 'Brisbane', airport: 'BNE' },
+  { country: 'Australia', city: 'Melbourne', airport: 'MEL' },
+  { country: 'Australia', city: 'Perth', airport: 'PER' },
+  { country: 'Australia', city: 'Sydney', airport: 'SYD' },
+  { country: 'Canada', city: 'Calgary', airport: 'YYC' },
+  { country: 'Canada', city: 'Edmonton', airport: 'YEG' },
+  { country: 'Canada', city: 'Montreal', airport: 'YUL' },
   { country: 'Canada', city: 'Toronto', airport: 'YYZ' },
+  { country: 'Canada', city: 'Vancouver', airport: 'YVR' },
+
+  { country: 'China', city: 'Beijing', airport: 'PEK' },
+  { country: 'China', city: 'Chongqing', airport: 'CKG' },
+  { country: 'China', city: 'Changdu', airport: 'CTU' },
+  { country: 'China', city: 'Chengdu', airport: 'TFU' },
+  { country: 'China', city: 'Guangzhou', airport: 'CAN' },
+  { country: 'China', city: 'Kunming', airport: 'KMG' },
+  { country: 'China', city: 'Shanghai', airport: 'SHA/PVG' },
+
+  { country: 'UK', city: 'London', airport: 'LON' },
+  { country: 'UK', city: 'Manchester', airport: 'MAN' },
+  { country: 'UK', city: 'Edinburgh', airport: 'EDI' },
+  { country: 'UK', city: 'Birmingham', airport: 'BHX' },
+
+  { country: 'USA', city: 'Atlanta', airport: 'ATL' },
+  { country: 'USA', city: 'Boston', airport: 'BOS' },
+  { country: 'USA', city: 'Charlotte', airport: 'ORD' },
+  { country: 'USA', city: 'Denver', airport: 'DEN' },
+  { country: 'USA', city: 'Dallas', airport: 'DFW' },
+  { country: 'USA', city: 'Los Angeles', airport: 'LAX' },
+  { country: 'USA', city: 'Seattle', airport: 'SEA' },
+  { country: 'USA', city: 'Philadelhpia', airport: 'PHL' },
+
+
 ];
 
 const Home = (props) => {
