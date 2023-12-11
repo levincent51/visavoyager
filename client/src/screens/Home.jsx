@@ -45,7 +45,9 @@ const locations = [
 
   { country: 'USA', city: 'Atlanta', airport: 'ATL' },
   { country: 'USA', city: 'Boston', airport: 'BOS' },
-  { country: 'USA', city: 'Charlotte', airport: 'ORD' },
+  { country: 'USA', city: 'Charlotte', airport: 'CLT' },
+  { country: 'USA', city: 'Chicago', airport: 'ORD' },
+
   { country: 'USA', city: 'Denver', airport: 'DEN' },
   { country: 'USA', city: 'Dallas', airport: 'DFW' },
   { country: 'USA', city: 'Los Angeles', airport: 'LAX' },
