@@ -52,7 +52,7 @@ const locations = [
   { country: 'USA', city: 'Dallas', airport: 'DFW' },
   { country: 'USA', city: 'Los Angeles', airport: 'LAX' },
   { country: 'USA', city: 'Seattle', airport: 'SEA' },
-  { country: 'USA', city: 'Philadelhpia', airport: 'PHL' },
+  { country: 'USA', city: 'Philadelphia', airport: 'PHL' },
 
 
 ];
