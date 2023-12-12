@@ -14,27 +14,17 @@ import { primaryColor } from "../util/colors";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CitiesAndDates from "../components/CitiesAndDates";
 
-const Checklist = (props) => {
-  const { from, to, date } = props;
-  const [progress, setProgress] = useState(15);
-  const [expandedAccordion, setExpandedAccordion] = useState(null);
 
-  // State to keep track of sub-checkboxes within accordions
-  const [subCheckboxes, setSubCheckboxes] = useState({
-    panel1: {
-      checkbox1: false,
-    },
-    panel2: {
-      checkbox1: false,
-      checkbox2: false,
-      checkbox3: false,
-      checkbox4: false,
-    },
-  });
+
+const Checklist = (props) => {
+  const { from, to, date, subCheckboxes, setSubCheckboxes, progress, setProgress} = props;
+  const [expandedAccordion, setExpandedAccordion] = useState(null);
 
   const handleAccordionChange = (panel) => (event, isExpanded) => {
     setExpandedAccordion(isExpanded ? panel : null);
   };
+
+  
 
   const handleCheckboxChange = (event, isChecked, panel, checkboxId) => {
     // If the checkbox is checked (selected), decrement progress by 3; otherwise, increment it by 3
@@ -149,7 +139,7 @@ const Checklist = (props) => {
             </div>
           </AccordionDetails>
         </Accordion>
-        <Accordion
+        {from?.country !== to?.country && <Accordion
           expanded={expandedAccordion === "panel2"}
           onChange={handleAccordionChange("panel2")}
           style={{ width: "350px" }}
@@ -170,7 +160,7 @@ const Checklist = (props) => {
                     }
                   />
                 }
-                label="PRC Tourist Visa ($140 fee)"
+                label={(from?.country === 'China' || to?.country === 'China') ? "PRC Tourist Visa ($140 fee)" : 'Tourist Visa'}
               />
             </FormGroup>
           </AccordionSummary>
@@ -258,7 +248,7 @@ const Checklist = (props) => {
               </FormGroup>
             </div>
           </AccordionDetails>
-        </Accordion>
+        </Accordion>}
       </Box>
     </Container>
   );

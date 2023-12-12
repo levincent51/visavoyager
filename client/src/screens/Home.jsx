@@ -58,7 +58,7 @@ const locations = [
 ];
 
 const Home = (props) => {
-  const {from, to, setFrom, setTo, date, setDate, setSearched} = props;
+  const {from, to, setFrom, setTo, date, setDate, setSearched, setProgress, setSubCheckboxes} = props;
   const [openDialog, setOpenDialog] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [areFieldsFilled, setAreFieldsFilled] = useState(false);
@@ -107,6 +107,20 @@ const Home = (props) => {
       setOpenDialog(false);
       setSearched(true)
       navigate("/checklist");
+      if (from?.country === to?.country) setProgress(3)
+      else setProgress(15)
+
+      setSubCheckboxes({
+        panel1: {
+          checkbox1: false,
+        },
+        panel2: {
+          checkbox1: false,
+          checkbox2: false,
+          checkbox3: false,
+          checkbox4: false,
+        },
+      })
     }
   };
 

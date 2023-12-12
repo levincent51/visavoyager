@@ -24,6 +24,21 @@ function App() {
     expiryDate: "",
   });
 
+  const [subCheckboxes, setSubCheckboxes] = useState({
+    panel1: {
+      checkbox1: false,
+    },
+    panel2: {
+      checkbox1: false,
+      checkbox2: false,
+      checkbox3: false,
+      checkbox4: false,
+    },
+  });
+
+  const [progress, setProgress] = useState(0);
+
+
   return (
     <ThemeProvider theme={theme}>
       <Router>
@@ -46,6 +61,8 @@ function App() {
                   date={date}
                   setDate={setDate}
                   setSearched={setSearched}
+                  setProgress={setProgress}
+                  setSubCheckboxes={setSubCheckboxes}
                 />
               </Layout>
             }
@@ -54,7 +71,7 @@ function App() {
             path="/checklist"
             element={
               <Layout searched={searched}>
-                <Checklist from={from} to={to} date={date} />
+                <Checklist from={from} to={to} date={date} subCheckboxes={subCheckboxes} setSubCheckboxes={setSubCheckboxes} progress={progress} setProgress={setProgress} />
               </Layout>
             }
           />
